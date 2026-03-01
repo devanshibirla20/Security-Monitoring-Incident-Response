@@ -12,7 +12,7 @@ It demonstrates practical implementation of cybersecurity monitoring and inciden
 
 Analyze system logs to detect abnormal behavior
 
-Implement rule-based threat detection engine
+Implement a rule-based threat detection engine
 
 Classify incidents based on severity levels
 
@@ -40,7 +40,7 @@ Flask Web Application
 Security Dashboard
         ↓
 Incident Monitoring & Response
-Workflow
+🔄 Workflow
 
 Logs are collected from system activity
 
@@ -74,14 +74,66 @@ Security-Monitoring-and-Incident-Response-SOC
 │   └── style.css
 │
 └── README.md
+🧠 Project Modules Breakdown
+
+Although the project is implemented as a Flask web application inside the SentinelX-Dashboard folder, it logically consists of multiple functional modules:
+
 🔎 Log Analysis
 
-Example logs processed by the system:
+Processes system logs from logs.txt
 
+Extracts timestamps, IP addresses, and activity patterns
+
+Identifies suspicious behavior based on predefined rules
+
+Feeds processed data into the detection engine
+
+🚨 Detection Engine
+
+Implements rule-based threat detection logic
+
+Detects brute force attempts
+
+Detects suspicious admin login
+
+Detects large data transfer
+
+Generates structured alerts with severity classification
+
+🛡 Incident Response
+
+Stores detected incidents inside SQLite database
+
+Classifies incidents based on severity (Low / Medium / High)
+
+Displays incidents on dashboard
+
+Allows analyst to review and mark incidents as closed
+
+Maintains structured incident lifecycle tracking
+
+🔄 Future Enhancements
+
+Real-time log monitoring
+
+AI-based anomaly detection
+
+Live analytics dashboard
+
+Email & SMS alert integration
+
+Automated response playbooks
+
+SIEM tool integration
+
+Cloud deployment support
+
+🔎 Log Analysis
+Example Logs Processed by the System
 Failed login from IP 192.168.1.10
 Admin login at 02:15 AM
 Large data transfer detected (2GB)
-Normal Activity
+✅ Normal Activity
 
 Login during working hours
 
@@ -91,7 +143,7 @@ Internal IP access
 
 Small data transfers
 
-Suspicious Activity
+🚨 Suspicious Activity
 
 Multiple failed login attempts
 
@@ -107,28 +159,24 @@ Unauthorized access attempts
 
 The system uses rule-based logic to detect threats.
 
-Brute Force Detection
+🔴 Brute Force Detection
 
 Condition: Failed login attempts exceed threshold
-
 Severity: HIGH
 
-Suspicious Admin Login
+🔴 Suspicious Admin Login
 
 Condition: Login outside working hours or from external IP
-
 Severity: HIGH
 
-Large Data Transfer
+🟡 Large Data Transfer
 
 Condition: Data transfer > 1GB
-
 Severity: MEDIUM
 
-General Anomaly Detection
+🔵 General Anomaly Detection
 
 Condition: Abnormal activity pattern
-
 Severity: LOW / MEDIUM
 
 📊 Incident Classification
@@ -150,7 +198,7 @@ Analyst reviews details
 
 Appropriate response action is taken
 
-Incident status updated to “Closed” after resolution
+Incident status updated to Closed after resolution
 
 Possible Response Actions
 
