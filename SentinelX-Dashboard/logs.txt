@@ -1,0 +1,7 @@
+Failed login from IP 192.168.1.10 (Invalid password)
+Failed login from IP 192.168.1.10 (Invalid password)
+Failed login from IP 192.168.1.10 (Invalid password)
+
+Admin login at 02:15 AM from external IP (203.45.67.89)
+
+Large data transfer detected (2GB) to unknown destination

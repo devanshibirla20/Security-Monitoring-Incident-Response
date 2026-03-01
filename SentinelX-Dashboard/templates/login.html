@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SentinelX | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="auth-body">
+
+<div class="auth-wrapper">
+
+    <div class="auth-box">
+
+        <div class="logo">🛡</div>
+
+        <h2>SentinelX</h2>
+        <p class="subtitle">Security Operations Portal</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-box">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+
+        {% if error %}
+            <div class="error-box">{{ error }}</div>
+        {% endif %}
+
+
+        <form method="POST" class="auth-form">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+
+
+            <div class="form-group password-field">
+                <label>Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁</span>
+                </div>
+            </div>
+
+
+            <div class="form-options">
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <a href="{{ url_for('forgot_password') }}">
+                    Forgot password?
+                </a>
+            </div>
+
+
+            <button type="submit" class="btn-primary">
+                Login
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            <span>Don't have an account?</span>
+            <a href="{{ url_for('signup') }}">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

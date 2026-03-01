@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SentinelX | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="dashboard-body">
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            🛡 SentinelX
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="active" href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('view_open_alerts') }}">Open Alerts</a>
+            <a href="{{ url_for('view_closed_alerts') }}">Closed Alerts</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>Security Operations Dashboard</h1>
+
+            <div class="user-info">
+                Logged in as 
+                <strong>{{ session.get('user', 'Admin') }}</strong>
+            </div>
+        </div>
+
+
+        <div class="cards-grid">
+
+            <div class="stat-card high-card">
+                <h2>{{ high }}</h2>
+                <p>High Severity</p>
+            </div>
+
+            <div class="stat-card medium-card">
+                <h2>{{ medium }}</h2>
+                <p>Medium Severity</p>
+            </div>
+
+            <div class="stat-card low-card">
+                <h2>{{ low }}</h2>
+                <p>Low Severity</p>
+            </div>
+
+            <div class="stat-card total-card">
+                <h2>{{ open_count }}</h2>
+                <p>Open Incidents</p>
+            </div>
+
+        </div>
+
+        <div class="dashboard-lower">
+
+            <div class="summary-box">
+                <h3>Incident Overview</h3>
+                <p>Total Open Alerts: <strong>{{ open_count }}</strong></p>
+                <p>Total Closed Alerts: <strong>{{ closed_count }}</strong></p>
+
+                <p>
+                    System Status:
+                    {% if high > 0 %}
+                        <span class="status-critical">Critical</span>
+                    {% else %}
+                        <span class="status-normal">Stable</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="activity-box">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li>Log analysis executed</li>
+                    <li>{{ high }} high severity alerts detected</li>
+                    <li>{{ open_count }} incidents currently active</li>
+                    <li>Monitoring engine operational</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Alerts | SentinelX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-body">
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <div class="brand">🛡 SentinelX</div>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a class="active" href="{{ url_for('view_open_alerts') }}">Open Alerts</a>
+            <a href="{{ url_for('view_closed_alerts') }}">Closed Alerts</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>🚨 Active Security Incidents</h1>
+
+            <input type="text"
+                   placeholder="Search incident..."
+                   class="search-box">
+        </div>
+
+        <div class="alert-table-container">
+
+            <table class="alert-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Threat</th>
+                        <th>Severity</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% if alerts and alerts|length > 0 %}
+
+                    {% for alert in alerts %}
+                    <tr>
+                        <td>{{ alert.id }}</td>
+                        <td>{{ alert.title }}</td>
+
+                        <td>
+                            <span class="badge {{ alert.severity|lower }}">
+                                {{ alert.severity }}
+                            </span>
+                        </td>
+
+                        <td>{{ alert.details }}</td>
+
+                        <td>
+                            <span class="status open">
+                                {{ alert.status }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <a class="close-btn"
+                               href="{{ url_for('close_alert', alert_id=alert.id) }}">
+                               ✅ Close
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="6" style="text-align:center; padding:20px;">
+                            No Open Alerts Found
+                        </td>
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

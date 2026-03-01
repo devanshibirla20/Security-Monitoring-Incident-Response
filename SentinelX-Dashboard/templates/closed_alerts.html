@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Closed Alerts | SentinelX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-body">
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <div class="brand">🛡 SentinelX</div>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('view_open_alerts') }}">Open Alerts</a>
+            <a class="active" href="{{ url_for('view_closed_alerts') }}">Closed Alerts</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </aside>
+
+
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>✅ Resolved Security Incidents</h1>
+        </div>
+
+        <div class="alert-table-container">
+
+            <table class="alert-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Threat</th>
+                        <th>Severity</th>
+                        <th>Details</th>
+                        <th>Resolved By</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% if alerts and alerts|length > 0 %}
+
+                    {% for alert in alerts %}
+                    <tr>
+                        <td>{{ alert.id }}</td>
+                        <td>{{ alert.title }}</td>
+
+                        <td>
+                            <span class="badge {{ alert.severity|lower }}">
+                                {{ alert.severity }}
+                            </span>
+                        </td>
+
+                        <td>{{ alert.details }}</td>
+
+                        <td>System Admin</td>
+
+                        <td>
+                            <span class="status closed">
+                                Closed
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="6" style="text-align:center; padding:20px;">
+                            No Closed Alerts
+                        </td>
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
