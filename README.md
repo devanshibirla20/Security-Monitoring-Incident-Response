@@ -1,197 +1,212 @@
-# 🔐 Security Monitoring and Incident Response System (Mini SOC Project)
+🔐 Security Monitoring and Incident Response System
+🛡 Mini SOC Project
+📌 Project Overview
 
-## 📌 Project Overview
+This project simulates a real-world Security Operations Center (SOC) environment by implementing log monitoring, threat detection, incident classification, and structured response handling.
 
-This project simulates a real-world **Security Operations Center (SOC)** environment by implementing a structured Security Monitoring and Incident Response framework.
+The system analyzes system logs, detects suspicious behavior using predefined detection rules, generates automated alerts, and maintains incident records inside a centralized dashboard.
 
-The objective is to monitor system activity logs, detect suspicious behavior using rule-based detection logic, classify incidents based on severity, and define a structured response workflow.
+It demonstrates practical implementation of cybersecurity monitoring and incident management concepts.
 
-This project demonstrates practical understanding of:
+🎯 Project Objectives
 
-- Log Analysis
-- Threat Detection
-- Incident Classification
-- Response Planning
-- Security Monitoring Architecture
+Analyze system logs to detect abnormal behavior
 
----
+Implement rule-based threat detection engine
 
-# 🎯 Project Objectives
+Classify incidents based on severity levels
 
-- Analyze system logs to identify abnormal patterns
-- Build rule-based detection logic
-- Classify incidents by severity (Low / Medium / High)
-- Define structured response workflows
-- Simulate real-world attack scenarios
-- Propose future improvements for enterprise-level deployment
+Generate automated security alerts
 
----
+Maintain structured incident tracking
 
-# 🏗️ Project Architecture
+Provide centralized monitoring dashboard
 
-The system follows a structured SOC workflow:
+Simulate real-world attack scenarios
 
-1. Log Collection
-2. Log Analysis
-3. Rule-Based Detection Engine
-4. Alert Generation
-5. Incident Classification
-6. Response Execution
-7. Documentation & Closure
+🏗 Project Architecture
+Log Collection (logs.txt)
+        ↓
+Log Analysis Engine (detection.py)
+        ↓
+Rule-Based Detection Logic
+        ↓
+Alert Generation
+        ↓
+SQLite Database (sentinelx.db)
+        ↓
+Flask Web Application
+        ↓
+Security Dashboard
+        ↓
+Incident Monitoring & Response
+Workflow
 
----
+Logs are collected from system activity
 
-# 📂 Project Structure
+Detection engine processes logs using predefined rules
 
+Suspicious activity generates an alert
+
+Alert is stored in the database
+
+Dashboard displays active and closed incidents
+
+Analyst reviews and closes incidents
+
+📂 Project Structure
 Security-Monitoring-and-Incident-Response-SOC
 │
-├── 01-Log-Analysis
-├── 02-Detection-Engine
-├── 03-Incident-Response
-├── 04-Future-Enhancements
+├── app.py
+├── detection.py
+├── sentinelx.db
+├── logs.txt
+│
+├── templates/
+│   ├── login.html
+│   ├── signup.html
+│   ├── forgot_password.html
+│   ├── dashboard.html
+│   ├── open_alerts.html
+│   └── closed_alerts.html
+│
+├── static/
+│   └── style.css
+│
 └── README.md
+🔎 Log Analysis
 
+Example logs processed by the system:
 
----
+Failed login from IP 192.168.1.10
+Admin login at 02:15 AM
+Large data transfer detected (2GB)
+Normal Activity
 
-# 🔎 1️⃣ Log Analysis
+Login during working hours
 
-System logs were analyzed to identify normal vs suspicious behavior patterns.
+Limited failed login attempts
 
-### Normal Activity Includes:
-- Login during office hours (9 AM – 6 PM)
-- 1–2 failed login attempts
-- Internal IP access (192.168.x.x)
-- Data download below 500MB
+Internal IP access
 
-### Suspicious Activity Includes:
-- 5+ failed login attempts within minutes
-- Admin login at midnight
-- External IP login
-- Large data download (>1GB)
-- Access to confidential files
+Small data transfers
 
----
+Suspicious Activity
 
-# 🚨 2️⃣ Detection Engine (Rule-Based Logic)
+Multiple failed login attempts
 
-A rule-based detection engine was implemented to identify potential threats.
+Admin login at unusual hours
 
-### Example Detection Rules:
+External IP login
 
-**Brute Force Detection**
-- Condition: ≥5 failed logins within 5 minutes
-- Severity: HIGH
+Large data transfer (>1GB)
 
-**Suspicious Admin Login**
-- Condition: Login outside office hours or external IP
-- Severity: HIGH
+Unauthorized access attempts
 
-**Large Data Transfer**
-- Condition: Download > 1GB
-- Severity: MEDIUM
+🚨 Detection Engine
 
-**Unauthorized Confidential Access**
-- Condition: Sensitive file access without history
-- Severity: MEDIUM
+The system uses rule-based logic to detect threats.
 
----
+Brute Force Detection
 
-# 📊 3️⃣ Incident Classification
+Condition: Failed login attempts exceed threshold
 
-Incidents are categorized as:
+Severity: HIGH
 
-| Severity | Description | Action Required |
-|----------|------------|----------------|
-| LOW      | Minor anomaly | Monitor |
-| MEDIUM   | Suspicious activity | Investigation required |
-| HIGH     | Confirmed malicious activity | Immediate action |
+Suspicious Admin Login
 
----
+Condition: Login outside working hours or from external IP
 
-# 🛡️ 4️⃣ Incident Response Workflow
+Severity: HIGH
 
-The response process follows structured SOC methodology:
+Large Data Transfer
 
-### Step 1 – Alert Generation
-Detection engine triggers alert.
+Condition: Data transfer > 1GB
 
-### Step 2 – Analyst Review
-Security analyst reviews logs and context.
+Severity: MEDIUM
 
-### Step 3 – Classification
-Incident severity determined.
+General Anomaly Detection
 
-### Step 4 – Response Action
-- Account Lock
-- Password Reset
-- System Isolation
-- Escalation to Security Team
+Condition: Abnormal activity pattern
 
-### Step 5 – Incident Closure
-Documentation and audit logging.
+Severity: LOW / MEDIUM
 
----
+📊 Incident Classification
+Severity	Description	Required Action
+LOW	Minor anomaly	Monitor
+MEDIUM	Suspicious activity	Investigation required
+HIGH	Confirmed threat	Immediate response required
+🛡 Incident Response Workflow
 
-# 🧪 Simulated Incident Scenarios
+Detection Engine identifies suspicious activity
 
-1. Brute Force Attack Attempt  
-2. Suspicious Midnight Admin Login  
-3. Large Data Exfiltration Attempt  
+Automated alert is generated
 
-Each scenario includes detection logic, severity classification, and defined response plan.
+Alert is stored in database
 
----
+Incident is displayed on dashboard
 
-# 🚀 Future Enhancements
+Analyst reviews details
 
-To transform this into an enterprise-grade solution:
+Appropriate response action is taken
 
-- AI-based anomaly detection
-- Real-time monitoring dashboard
-- Automated response playbooks
-- SIEM integration
-- Email & SMS alert system
+Incident status updated to “Closed” after resolution
 
----
+Possible Response Actions
 
-# 🏢 Real-World Application
+Account Lock
 
-This system simulates practical SOC operations used in:
+Password Reset
 
-- Enterprise Security Teams
-- Cloud Infrastructure Monitoring
-- Financial Institutions
-- Government Cybersecurity Units
+IP Blocking
 
----
+System Isolation
 
-# 💡 Key Learning Outcomes
+Escalation to Security Team
 
-Through this project, I developed understanding of:
+🧪 Simulated Attack Scenarios
 
-- Security Monitoring Fundamentals
-- Log-Based Threat Detection
-- Incident Severity Assessment
-- SOC Workflow Design
-- Security Response Planning
+Brute Force Attack
 
----
+Midnight Admin Login
 
-# 🧠 Conclusion
+Large Data Exfiltration
 
-The Security Monitoring and Incident Response System demonstrates how structured log analysis and rule-based detection can proactively identify and mitigate potential security threats.
+Unauthorized Access Attempts
 
-This project reflects foundational SOC practices and provides a scalable framework for future automation and AI integration.
+Each scenario triggers detection rules and generates alerts automatically.
 
----
+🚀 Future Improvements
 
-# 📌 Author
+Real-time log monitoring
 
-Developed as part of Internship Project  
+AI-based anomaly detection
+
+Live analytics dashboard
+
+Email/SMS alert integration
+
+Automated response playbooks
+
+SIEM integration
+
+Cloud deployment support
+
+💡 Technologies Used
+
+Python
+
+Flask
+
+SQLite
+
+HTML / CSS
+
+Regex-Based Log Parsing
+
+Rule-Based Threat Detection
+
+👨‍💻 Developed As
+
+Internship Project
 Focused on Security Monitoring & Incident Response Simulation
-
----
-
-⭐ If you found this project insightful, feel free to explore and contribute!
-
